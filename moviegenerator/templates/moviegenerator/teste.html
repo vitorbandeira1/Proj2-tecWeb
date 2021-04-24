@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+	  <meta charset="UTF-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	  <title>Spinflix</title>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+	    integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+	    crossorigin="anonymous" />
+	  <link rel="preconnect" href="https://fonts.gstatic.com" />
+	  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Permanent+Marker&display=swap" rel="stylesheet" />
+	  <link rel="stylesheet" href="{% static 'moviegenerator/css/teste.css' %}"/>
+  </head>
+
+  <body>
+    <section>
+        <header>
+            <a href="#"><img src="{% static 'moviegenerator/img/spinflix.png' %}" class="logo"></a>
+        </header>
+        <div class="container">
+            <div class="preferences-input">
+                <form class="form-preferences" method="post">
+                    {% csrf_token %}
+                    <h2>Select your preferences</h2>
+                    <div class="form-genre">
+                        <h3>Genre</h3>
+                        <select id='genre' type="text" name="genre">
+                            <option value="Drama">Drama</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Comedy">Comedy</option>
+                            <option selected value="War">Any Gender</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-imdb">
+                        <h3>IMDB</h3>
+                        <select id='imdb' type="text" name="imdb">
+                            <option value=">90">>90</option>
+                            <option value=">80">>80</option>
+                            <option value=">70">>70</option>
+                            <option value=">60">>60</option>
+                            <option value=">50">>50</option>
+                            <option selected value="Any Score">Any Score</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-type">
+                        <h3>Type</h3>
+                        <div>
+                            <input type="checkbox" id="typemovie" name="type" value="movie">
+                            <label for="typemovie">Movie</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="typetvshow" name="type" value="tvshow">
+                            <label for="typetvshow">TV show</label>
+                        </div>
+                    </div>
+    
+                    <button class="btn-spin" type="submit">Spin</button>
+                </form>
+            </div>
+            <div class="output">
+                <img src="{% static 'moviegenerator/img/movie-cover.jpeg' %}"class="movie-cover">
+                <div class="content">
+                    <h2>Bridgerton</h2>
+                    <p class="synopsis">
+                        Wealth, lust, and betrayal set against the 
+                        backdrop of Regency-era England, seen through 
+                        the eyes of the powerful Bridgerton family.
+                    </p>
+                    <button class="btn">Watch Now</button>
+                </div> 
+            </div>
+        </div>
+    </section>
+  </body>
+</html>
