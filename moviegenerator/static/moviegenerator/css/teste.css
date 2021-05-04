@@ -125,8 +125,9 @@ header .logo{
     text-decoration: none;
 }
 
-.container .output .content .btn a{
+.container .output .content .btn a, a:visited{
     text-decoration: none;
+    color: white;
 }
 
 .container .output .content h2{
@@ -139,7 +140,9 @@ header .logo{
 .container .output .content p{
     margin-bottom: 1rem;
     font-size: small;
+    font-weight: lighter;
     letter-spacing: 1px;
+    line-height: 1rem;
 }
 
 @media (max-width: 800px){
