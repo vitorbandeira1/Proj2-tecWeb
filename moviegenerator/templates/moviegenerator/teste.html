@@ -63,15 +63,13 @@
                 </form>
             </div>
             <div class="output">
-                <img src="{% static 'moviegenerator/img/movie-cover.jpeg' %}"class="movie-cover">
+                <img src= "{{img}}" class="movie-cover">
                 <div class="content">
-                    <h2>Bridgerton</h2>
+                    <h2>{{title}}</h2>
                     <p class="synopsis">
-                        Wealth, lust, and betrayal set against the 
-                        backdrop of Regency-era England, seen through 
-                        the eyes of the powerful Bridgerton family.
+                        {{overview}}
                     </p>
-                    <button class="btn">Watch Now</button>
+                    <button class="btn"><a href = "{{link}}">Watch Now</a></button>
                 </div> 
             </div>
         </div>

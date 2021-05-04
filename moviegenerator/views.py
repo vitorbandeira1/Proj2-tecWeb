@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import TextField
-import requests,json,csv,os
+import requests,json,csv,os,random
 
 
 
@@ -9,12 +9,18 @@ movie_id = '464052'
 tv_id = '1416'
 access_token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NGEyMzMwODNhYTg3ZmMwMzNiM2M1NTQ0NmU0ZGQzZSIsInN1YiI6IjYwOGIxNzk3NjY0NjlhMDAyYjFiMzM1OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dmwOZBSInOqzZLh8CdeUHPqH-jq47ZQwAfYsd86AxpY'
 
+rating = 8.0
+genre = 28
+
 def index(request):
     #imdb = get_data(API_key,Movie_ID)
-    getMovie(movie_id)
-    getTv(tv_id)
-    getWatchProviders(tv_id)
-    return render(request, 'moviegenerator/teste.html')
+    #getMovie(movie_id)
+    #getTv(tv_id)
+    results = randomizer(discoverMovie(rating, genre))
+    details = getDetails(results)
+    x = getMovieWatchProviders(details["id"])
+    print(x)
+    return render(request, 'moviegenerator/teste.html', details)
 
 
 def getMovie(movie_id):
@@ -31,7 +37,16 @@ def getTv(tv_id):
     response = requests.get(url)
 
 
-def getWatchProviders(tv_id):
+def getMovieWatchProviders(movie_id):
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}/watch/providers?api_key={api_key}"
+    response = requests.get(url)
+    if response.status_code==200: 
+        movieData = json.loads(response.text) #response dictionary
+        return movieData["results"]["BR"] #providers from brazil
+    else:
+        return ("error")
+
+def getTvWatchProviders(tv_id):
     url = f"https://api.themoviedb.org/3/tv/{tv_id}/watch/providers?api_key={api_key}"
     response = requests.get(url)
     if response.status_code==200: 
@@ -39,5 +54,35 @@ def getWatchProviders(tv_id):
         return tvData["results"]["BR"] #providers from brazil
     else:
         return ("error")
+
+def discoverMovie(rating, genre):
+    url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_average.gte={rating}&with_genres={genre}&with_watch_monetization_types=flatrate"
+    response = requests.get(url)
+    if response.status_code==200: 
+        movieData = json.loads(response.text) #response dictionary
+        return movieData["results"] #providers from brazil
+    else:
+        return ("error")
+
+def randomizer(lista):
+    return random.choice(lista)
+
+def getDetails(results):
+    img = results["poster_path"]
+    title = results["original_title"] 
+    overview = results["overview"]
+    id = results["id"]
+    link = getMovieWatchProviders(id)["link"]
+    details =  {"img": f"https://image.tmdb.org/t/p/w500/{img}",
+                "title": title,
+                "id": id,
+                "overview": overview,
+                "link": link}
+    return details
+
+
+
+
+    
 
         

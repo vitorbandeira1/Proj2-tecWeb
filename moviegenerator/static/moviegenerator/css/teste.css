@@ -122,6 +122,11 @@ header .logo{
     padding: 8px 20px;
     font-weight: 500;
     letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.container .output .content .btn a{
+    text-decoration: none;
 }
 
 .container .output .content h2{
