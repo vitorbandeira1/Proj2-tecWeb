@@ -3,6 +3,7 @@ from .models import TextField
 import requests,json,csv,os
 
 
+
 api_key = '84a233083aa87fc033b3c55446e4dd3e'
 movie_id = '464052'
 tv_id = '1416'
@@ -28,11 +29,7 @@ def getMovie(movie_id):
 def getTv(tv_id):
     url = f"https://api.themoviedb.org/3/tv/{tv_id}?api_key={api_key}&language=en-US"
     response = requests.get(url)
-    if response.status_code==200: 
-        tvData = json.loads(response.text) #response dictionary
-        return tvData
-    else:
-        return ("error")
+
 
 def getWatchProviders(tv_id):
     url = f"https://api.themoviedb.org/3/tv/{tv_id}/watch/providers?api_key={api_key}"
