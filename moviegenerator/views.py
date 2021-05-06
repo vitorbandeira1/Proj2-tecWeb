@@ -19,7 +19,12 @@ def index(request):
     results = randomizer(discoverMovie(rating, genre))
     details = getDetails(results)
     x = getMovieWatchProviders(details["id"])
-    print(x)
+    #getGeneroMovie()
+    genresTv = getGeneroTv()['genres']
+    for i in genresTv:
+        print(i)
+    
+
     return render(request, 'moviegenerator/teste.html', details)
 
 
@@ -56,10 +61,11 @@ def getTvWatchProviders(tv_id):
         return ("error")
 
 def discoverMovie(rating, genre):
-    url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_average.gte={rating}&with_genres={genre}&with_watch_monetization_types=flatrate"
+    url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=2&vote_average.gte={rating}&with_genres={genre}&with_watch_monetization_types=flatrate"
     response = requests.get(url)
     if response.status_code==200: 
         movieData = json.loads(response.text) #response dictionary
+        #print(movieData["results"])
         return movieData["results"] #providers from brazil
     else:
         return ("error")
@@ -79,7 +85,28 @@ def getDetails(results):
                 "overview": overview,
                 "link": link}
     return details
+    
+def getGeneroMovie():
+    url = 'https://api.themoviedb.org/3/genre/movie/list?api_key='+api_key+'&language=en-US'
+    #urlTv = 'https://api.themoviedb.org/3/genre/tv/list?api_key='+API_key+'&language=en-US'
+    response =  requests.get(url)
+    #responseTv =  requests.get(urlTv)
+    if response.status_code==200: 
+        genresMovie = json.loads(response.text)
+        print(genresMovie)
+        return (genresMovie)
+    else:
+        return ("error")
 
+def getGeneroTv():
+    urlTv = 'https://api.themoviedb.org/3/genre/tv/list?api_key='+api_key+'&language=en-US'
+    response =  requests.get(urlTv)
+    if response.status_code==200: 
+        genresTv = json.loads(response.text)
+        
+        return (genresTv)
+    else:
+        return ("error")
 
 
 
