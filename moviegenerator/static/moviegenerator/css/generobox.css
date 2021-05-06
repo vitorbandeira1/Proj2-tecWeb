@@ -5,6 +5,7 @@
 
 .select-list {
   color: #555;
+  width: 66%;
 }
 .select-list .title {
   display: inline-block;
@@ -12,12 +13,13 @@
   background: #fff;
   border: 1px solid #eaeaec;
   border-radius: 5px;
-  padding: 10px 15px 10px 15px;
+  padding: 5px 15px 5px 15px;
+  width: 100%;
 }
 .select-list .title::after {
   display: inline-block;
   content: '>';
-  margin-left: 15px;
+  margin-left: 40px;
   font-size: 11px;
   transform: rotate(90deg) scale(1, 2);
 }
@@ -34,7 +36,7 @@
 }
 .select-list .select-options .option label {
   display: inline-block;
-  padding: 10px 30px 10px 10px;
+  padding: 5px 30px 5px 10px;
 }
 .select-list .select-options .option:hover {
   background: #eaeaec;

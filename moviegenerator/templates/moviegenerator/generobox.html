@@ -3,24 +3,14 @@
 
 {% block contentGenre %}
 <div class="select-list">
-    <div class="title">Configure Table</div>
+    <div class="title">Select Genres</div>
     <div class="select-options">
-      <div class="option"> 
-          <input type="checkbox" name="vehicle" id="option1" value="" />
-          <label for="option1">Platform</label>
-      </div>
-       <div class="option"> 
-          <input type="checkbox" name="vehicle" id="option2" />
-          <label for="option2">Device ID</label>
-      </div>
-          <div class="option"> 
-          <input type="checkbox" name="vehicle" id="option3" />
-          <label for="option3">Token</label>
-      </div>
-          <div class="option"> 
-          <input type="checkbox" name="vehicle" id="option4" />
-          <label for="option4">Option 1</label>
-      </div>
+        {% for id,name in dictTV.items %}
+        <div class="option"> 
+            <input type="checkbox" name="vehicle" id="{{id}}" value="{{id}}" />
+            <label for="{{id}}">{{name}}</label>
+        </div>
+        {% endfor %}
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

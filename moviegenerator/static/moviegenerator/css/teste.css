@@ -28,12 +28,21 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: white;
 }
 
 header .logo{
     position: relative;
     max-width: 150px;
+    margin-right: 20px;
 }
+
+header .list{
+    margin-left: auto;
+    text-decoration: none;
+}
+
 
 .container{
     position: relative;
@@ -62,7 +71,7 @@ header .logo{
 }
 
 
-.form-genre, .form-imdb, .form-type, .form-genre2{
+.form-imdb, .form-type, .form-genre2{
     display: flex;
     flex-direction: row;
     justify-content: space-between;

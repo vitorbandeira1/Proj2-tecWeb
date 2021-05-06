@@ -19,6 +19,8 @@
     <section>
         <header>
             <a href="#"><img src="{% static 'moviegenerator/img/spinflix.png' %}" class="logo"></a>
+            <span class="subtitle">Spin and Watch.</span>
+            <a href="#" class="list" >My list</a>
         </header>
         <div class="container">
             <div class="preferences-input">
@@ -28,14 +30,6 @@
                     <div class="form-genre2">
                         <h3>Genre</h3>
                         {% include "moviegenerator/generobox.html" %}
-                    </div>
-                    <div class="form-genre">
-                        <h3>Genre</h3>
-                        <select id='genre' type="text" name="genre">
-                            {% for id,name in dictTV.items %}
-                            <option value={{id}}>{{name}}</option>
-                            {% endfor %}
-                        </select>
                     </div>
     
                     <div class="form-imdb">
