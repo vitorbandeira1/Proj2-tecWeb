@@ -1,0 +1,11 @@
+{% load static %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'moviegenerator/css/slider.css' %}"/>
+<div class="slidecontainer">
+    <input type="range" min="1" max="10" value="5" class="slider" id="myRange">
+  </div>
+  <script type="text/javascript" src="{% static 'moviegenerator/script/slider.js' %}"></script>
+{% endblock %}

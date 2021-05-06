@@ -1,0 +1,23 @@
+{% load static %}
+
+
+{% block content %}
+
+<button type="button" class="collapsible">Open Collapsible</button>
+<div class="content">
+        {% for id,name in dictTV.items %}
+        <div>
+            <input type="checkbox" value={{id}}>
+            <label for="typemovie">{{name}}</label>
+        </div>
+
+        <!-- <option value={{id}}>{{name}}</option> -->
+        <!-- <option value="Horror">Horror</option>
+        <option value="Romance">Romance</option>
+        <option value="Comedy">Comedy</option>
+        <option selected value="War">Any Gender</option> -->
+        {% endfor %}
+</div>
+<script type="text/javascript" src="{% static 'moviegenerator/script/generobox.js' %}"></script>
+
+{% endblock %}

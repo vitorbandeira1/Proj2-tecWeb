@@ -24,29 +24,33 @@
                 <form class="form-preferences" method="post">
                     {% csrf_token %}
                     <h2>Select your preferences</h2>
+                    {% include "moviegenerator/generobox.html" %}
                     <div class="form-genre">
                         <h3>Genre</h3>
-                        <select id='genre' type="text" name="genre">
-                            <option value="Drama">Drama</option>
-                            <option value="Horror">Horror</option>
+                        <select id='genre' type="text" name="genre" multiple>
+                            {% for id,name in dictTV.items %}
+                            <option value={{id}}>{{name}}</option>
+                            <!-- <option value="Horror">Horror</option>
                             <option value="Romance">Romance</option>
                             <option value="Comedy">Comedy</option>
-                            <option selected value="War">Any Gender</option>
+                            <option selected value="War">Any Gender</option> -->
+                            {% endfor %}
                         </select>
                     </div>
     
                     <div class="form-imdb">
                         <h3>Rating</h3>
-                        <select id='imdb' type="text" name="imdb">
+                        {% include "moviegenerator/slider.html" %}
+
+                        <!-- <select id='imdb' type="text" name="imdb">
                             <option value=">90">>90</option>
                             <option value=">80">>80</option>
                             <option value=">70">>70</option>
                             <option value=">60">>60</option>
                             <option value=">50">>50</option>
                             <option selected value="Any Score">Any Score</option>
-                        </select>
+                        </select> -->
                     </div>
-    
                     <div class="form-type">
                         <h3>Type</h3>
                         <div>
@@ -74,5 +78,6 @@
             </div>
         </div>
     </section>
+
   </body>
 </html>

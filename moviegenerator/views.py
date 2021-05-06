@@ -21,11 +21,22 @@ def index(request):
     x = getMovieWatchProviders(details["id"])
     #getGeneroMovie()
     genresTv = getGeneroTv()['genres']
+    genresdict = {}
     for i in genresTv:
-        print(i)
-    
+        values = list(i.values())
+        genresdict[values[0]] = values[1]
+        print(genresdict)
+        
+        # genero =i.values()
+        # for j in i.values():
+        #     print(j)
+    details["dictTV"]=genresdict
+    print(details)
 
     return render(request, 'moviegenerator/teste.html', details)
+
+# def getGeneroList():
+    
 
 
 def getMovie(movie_id):
