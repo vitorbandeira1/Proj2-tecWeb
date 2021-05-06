@@ -1,25 +1,44 @@
-/* Style the button that is used to open and close the collapsible content */
-.collapsible {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-  }
-  
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .collapsible:hover {
-    background-color: #ccc;
-  }
-  
-  /* Style the collapsible content. Note: hidden by default */
-  .content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
-  }
+
+
+/* Style dropdown*/
+
+
+.select-list {
+  color: #555;
+}
+.select-list .title {
+  display: inline-block;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #eaeaec;
+  border-radius: 5px;
+  padding: 10px 15px 10px 15px;
+}
+.select-list .title::after {
+  display: inline-block;
+  content: '>';
+  margin-left: 15px;
+  font-size: 11px;
+  transform: rotate(90deg) scale(1, 2);
+}
+.select-list .title:hover {
+  background: #eaeaec;
+}
+.select-list .select-options {
+  margin-top: 5px;
+  display: none;
+  position: absolute;
+  z-index: 500;
+  border: 1px solid #eaeaec;
+  background: #fff;
+}
+.select-list .select-options .option label {
+  display: inline-block;
+  padding: 10px 30px 10px 10px;
+}
+.select-list .select-options .option:hover {
+  background: #eaeaec;
+}
+.select-list .select-options .option input {
+  margin: 10px 0 12px 15px;
+}

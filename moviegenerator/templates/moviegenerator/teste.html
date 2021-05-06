@@ -12,6 +12,7 @@
 	  <link rel="preconnect" href="https://fonts.gstatic.com" />
 	  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Permanent+Marker&display=swap" rel="stylesheet" />
 	  <link rel="stylesheet" href="{% static 'moviegenerator/css/teste.css' %}"/>
+      <link rel="stylesheet" href="{% static 'moviegenerator/css/generobox.css' %}"/>
   </head>
 
   <body>
@@ -24,16 +25,15 @@
                 <form class="form-preferences" method="post">
                     {% csrf_token %}
                     <h2>Select your preferences</h2>
-                    {% include "moviegenerator/generobox.html" %}
+                    <div class="form-genre2">
+                        <h3>Genre</h3>
+                        {% include "moviegenerator/generobox.html" %}
+                    </div>
                     <div class="form-genre">
                         <h3>Genre</h3>
-                        <select id='genre' type="text" name="genre" multiple>
+                        <select id='genre' type="text" name="genre">
                             {% for id,name in dictTV.items %}
                             <option value={{id}}>{{name}}</option>
-                            <!-- <option value="Horror">Horror</option>
-                            <option value="Romance">Romance</option>
-                            <option value="Comedy">Comedy</option>
-                            <option selected value="War">Any Gender</option> -->
                             {% endfor %}
                         </select>
                     </div>
@@ -78,6 +78,5 @@
             </div>
         </div>
     </section>
-
   </body>
 </html>

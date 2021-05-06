@@ -1,23 +1,75 @@
 {% load static %}
 
 
-{% block content %}
+{% block contentGenre %}
+<div class="select-list">
+    <div class="title">Configure Table</div>
+    <div class="select-options">
+      <div class="option"> 
+          <input type="checkbox" name="vehicle" id="option1" value="" />
+          <label for="option1">Platform</label>
+      </div>
+       <div class="option"> 
+          <input type="checkbox" name="vehicle" id="option2" />
+          <label for="option2">Device ID</label>
+      </div>
+          <div class="option"> 
+          <input type="checkbox" name="vehicle" id="option3" />
+          <label for="option3">Token</label>
+      </div>
+          <div class="option"> 
+          <input type="checkbox" name="vehicle" id="option4" />
+          <label for="option4">Option 1</label>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+        (function ($) {
+        $.fn.multiselect = function () {
+            var selector = this;
+            var options = $.extend(
+            {
+                onChange: function () {}
+            },
+            arguments[0] || {}
+            );
 
-<button type="button" class="collapsible">Open Collapsible</button>
-<div class="content">
-        {% for id,name in dictTV.items %}
-        <div>
-            <input type="checkbox" value={{id}}>
-            <label for="typemovie">{{name}}</label>
-        </div>
+            activate();
 
-        <!-- <option value={{id}}>{{name}}</option> -->
-        <!-- <option value="Horror">Horror</option>
-        <option value="Romance">Romance</option>
-        <option value="Comedy">Comedy</option>
-        <option selected value="War">Any Gender</option> -->
-        {% endfor %}
-</div>
-<script type="text/javascript" src="{% static 'moviegenerator/script/generobox.js' %}"></script>
+            /////////
 
-{% endblock %}
+            function activate() {
+            //events
+            $(selector)
+                .find(".title")
+                .on("click", function (e) {
+                $(this).parent().find(".select-options").toggle();
+                });
+
+            $(selector)
+                .find('input[type="checkbox"]')
+                .change(function (e) {
+                options.onChange.call(this);
+                });
+            }
+        };
+        })(jQuery);
+
+        $(document).ready(function () {
+        $(".select-list").multiselect({
+            onChange: updateTable
+        });
+        });
+
+        function updateTable() {
+        var checkboxValue = $(this).val();
+        var isChecked = $(this).is(":checked");
+
+        alert(checkboxValue + " is " + isChecked);
+        }
+  </script>
+
+
+
+{% endblock %} 
