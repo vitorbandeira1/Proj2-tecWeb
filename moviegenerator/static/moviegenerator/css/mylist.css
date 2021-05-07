@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+section{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1b1b1b;
+}
+
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+header .logo{
+    position: relative;
+    max-width: 150px;
+    margin-right: 20px;
+}
+
+header .subtitle{
+    margin-right: auto;
+}
+
+header .link{
+    margin-left: auto;
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+}
+
+
+
+.container{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    flex-direction: column;
+}
+
+.container h1{
+    font-weight: bolder;
+    margin-bottom: 2.5rem;
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    margin-right: auto;
+}
+
+
+
+/***** Lista dos filmes https://css-tricks.com/how-to-re-create-a-nifty-netflix-animation-in-css/ ********/ 
+.list {
+    display: grid;
+    grid-gap: 20px 0;
+    grid-template-columns: repeat(6, minmax(100px, 1fr));
+}
+
+.item {
+    position: relative;
+    display: block;
+    flex: 1 1 0px;
+    transition: transform 500ms;
+    max-width: 250px;
+}
+
+.container:focus-within .item,
+.container:hover .item {
+    transform: translateX(-25%);
+}
+
+.item:focus ~ .item,
+.item:hover ~ .item {
+    transform: translateX(25%);
+}
+
+.container .item:focus,
+.container .item:hover {
+    transform: scale(1.5);
+    z-index: 1;
+}
+
+body {
+    overflow: hidden;
+}
+
+.item img {
+    display: block;
+    border-radius: 3px;
+    max-width: 100%;
+    padding: 0 1px;
+}

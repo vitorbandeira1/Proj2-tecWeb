@@ -18,9 +18,10 @@
   <body>
     <section>
         <header>
-            <a href="#"><img src="{% static 'moviegenerator/img/spinflix.png' %}" class="logo"></a>
+            <a href="{% url 'index' %}"><img src="{% static 'moviegenerator/img/spinflix.png' %}" class="logo"></a>
             <span class="subtitle">Spin and Watch.</span>
-            <a href="#" class="list" >My list</a>
+            <a href="{% url 'index' %}" class="list" >Início</a>
+            <a href="{% url 'mylist' %}" class="list" >My list</a>
         </header>
         <div class="container">
             <div class="preferences-input">

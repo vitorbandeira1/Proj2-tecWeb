@@ -35,9 +35,12 @@ def index(request):
 
     return render(request, 'moviegenerator/teste.html', details)
 
-# def getGeneroList():
+def mylist(request):
+    return render(request, 'moviegenerator/mylist.html')
     
 
+
+# Defs pra explorar api ########################################
 
 def getMovie(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US"

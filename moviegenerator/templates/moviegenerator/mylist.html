@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+	  <meta charset="UTF-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	  <title>Spinflix</title>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+	    integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+	    crossorigin="anonymous" />
+	  <link rel="preconnect" href="https://fonts.gstatic.com" />
+	  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Permanent+Marker&display=swap" rel="stylesheet" />
+	  <link rel="stylesheet" href="{% static 'moviegenerator/css/mylist.css' %}"/>
+  </head>
+
+  <body>
+    <section>
+        <header>
+            <a href="{% url 'index' %}"><img src="{% static 'moviegenerator/img/spinflix.png' %}" class="logo"></a>
+            <span class="subtitle">Spin and Watch.</span>
+            <div class="links">
+                <a href="{% url 'index' %}" class="link" >Início</a>
+                <a href="{% url 'mylist' %}" class="link" >My list</a>
+            </div>
+        </header>
+        <div class="container">
+            <h1>My List</h1>
+            <div class="list">
+                <a href="#animals" class="item"><img src="https://placeimg.com/640/480/animals" alt="Animals"></a>
+                <a href="#architecture" class="item"><img src="https://placeimg.com/640/480/architecture" alt="Architecture"></a>
+                <a href="#nature" class="item"><img src="https://placeimg.com/640/480/nature" alt="Nature"></a>
+                <a href="#people" class="item"><img src="https://placeimg.com/640/480/people" alt="People"></a>
+                <a href="#tech" class="item"><img src="https://placeimg.com/640/480/tech" alt="Tech"></a>
+                <a href="#animals" class="item"><img src="https://placeimg.com/640/480/animals" alt="Animals"></a>
+                <a href="#architecture" class="item"><img src="https://placeimg.com/640/480/architecture" alt="Architecture"></a>
+                <a href="#nature" class="item"><img src="https://placeimg.com/640/480/nature" alt="Nature"></a>
+                <a href="#people" class="item"><img src="https://placeimg.com/640/480/people" alt="People"></a>
+                <a href="#tech" class="item"><img src="https://placeimg.com/640/480/tech" alt="Tech"></a>
+            </div>
+        </div>
+    </section>
+  </body>
+</html>
