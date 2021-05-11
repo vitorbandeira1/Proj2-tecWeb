@@ -22,7 +22,7 @@
             <a href="{% url 'index' %}"><img src="{% static 'moviegenerator/img/spinflix.png' %}" class="logo"></a>
             <span class="subtitle">Spin and Watch.</span>
             <div class="links">
-                <a href="{% url 'index' %}" class="link" >Início</a>
+                <a href="{% url 'index' %}" class="link" >Home</a>
                 <a href="{% url 'mylist' %}" class="link" >My list</a>
             </div>
         </header>
@@ -43,14 +43,28 @@
                     <div class="form-type">
                         <h3>Type</h3>
                         <div>
-                            <input type="checkbox" id="typemovie" name="type" value="movie">
+                            <input type="checkbox" id="typemovie" name="type" value="movie" onChange="changeType();">
                             <label for="typemovie">Movie</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="typetvshow" name="type" value="tv">
+                            <input type="checkbox" id="typetv" name="type" value="tv" onChange="changeType();">
                             <label for="typetvshow">TV show</label>
                         </div>
                     </div>
+                    <script>
+                        function changeType(){
+                            var movie = document.getElementById('typemovie')
+                            var tv = document.getElementById('typetv')
+                            if (movie.checked){
+                                console.log("Clicou no movie")
+                            }else if (tv.checked){
+                                console.log("Clicou no tv")
+                            }
+                    
+                        };
+                        
+                    </script>
+
     
                     <button class="btn-spin" type="submit">Spin</button>
                 </form>
@@ -64,7 +78,8 @@
                     <p class="synopsis">
                         {{overview}}
                     </p>
-                    <button type="submit" class="btn" name="taskAdd"><a href = "{{link}}">Watch Now</a></button>
+                    <button type="submit" class="btn-add" name="taskAdd">+</button>
+                    <button class="btn"><a href = "{{link}}">Watch Now</a></button>
                 </div>
             </form>
         </div>

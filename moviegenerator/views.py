@@ -6,26 +6,30 @@ import requests,json,csv,os,random
 
 
 api_key = settings.TMDB_API_KEY
-movie_id = '464052'
-tv_id = '1416'
 access_token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NGEyMzMwODNhYTg3ZmMwMzNiM2M1NTQ0NmU0ZGQzZSIsInN1YiI6IjYwOGIxNzk3NjY0NjlhMDAyYjFiMzM1OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dmwOZBSInOqzZLh8CdeUHPqH-jq47ZQwAfYsd86AxpY'
-rating = 8.0
-genre = 28
 
 def index(request):
 	details = {}
 	title = ''
 	if request.method == 'POST':
-		genres = int(request.POST.get('genres'))
-		rating = float(request.POST.get('rating'))
-		type_of = request.POST.get('type')
+		#genres = int(request.POST.get('genres'))
+		#rating = float(request.POST.get('rating'))
+		#type_of = request.POST.get('type')
 
-		print(genre, rating, type_of)
+		
+
+		# print(genres, rating, type_of)
 
 		if 'taskAdd' in request.POST:
 			print('entrou if taskadd')
 			# title = Production().save()
 		else:
+			genres = request.POST.get('genres')
+			print(genres)
+			for k, v in genres.items():
+				print(v)
+			rating = float(request.POST.get('rating'))
+			type_of = request.POST.get('type')
 			print('entrou else taskadd')
 			#chama as funcoes pra pegar o filme aleatorio
 			if type_of == "movie": 
@@ -37,7 +41,6 @@ def index(request):
 			production = getProduction(type_of, title["id"])
 			details = getDetails(type_of, production)
 			print(details)
-
 	genresMovie, genresTv = getGenero()
 	# print('Movie',genresMovie,'\nTv',genresTv)
 	details["genresMovie"] = genresMovie
@@ -110,15 +113,19 @@ def getProduction(type, tv_id):
 	else:
 		return ("error")
 
-def getDetails(type, results):
+def getDetails(type_of, results):
 	img = results["poster_path"]
-	title = results["original_title"]
+	if type_of == "movie":
+		title = results["original_title"]
+		year = (results["release_date"]).split("-")[0]
+	elif type_of == "tv":
+		title = results["original_name"]
+		year = (results["first_air_date"]).split("-")[0]
 	overview = results["overview"]
 	id = results["id"]
 	popularity = results["popularity"]
 	rating = results["vote_average"]
-	year = (results["release_date"]).split("-")[0]
-	link = getWatchProviders(type, id)["link"]
+	link = getWatchProviders(type_of, id)["link"]
 	details =  {"img": f"https://image.tmdb.org/t/p/w500/{img}",
 				"title": title,
 				"id": id,
