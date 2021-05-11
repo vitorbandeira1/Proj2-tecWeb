@@ -13,27 +13,6 @@ rating = 8.0
 genre = 28
 
 def index(request):
-	'''
-	#imdb = get_data(API_key,Movie_ID)
-	#getMovie(movie_id)
-	#getTv(tv_id)
-	results = randomizer(discoverMovie(rating, genre))
-	details = getDetails(results)
-	x = getMovieWatchProviders(details["id"])
-	#getGeneroMovie()
-	genresTv = getGeneroTv()['genres']
-	genresdict = {}
-	for i in genresTv:
-		values = list(i.values())
-		genresdict[values[0]] = values[1]
-		print(genresdict)
-		
-		# genero =i.values()
-		# for j in i.values():
-		#     print(j)
-	details["dictTV"]=genresdict
-	print(details)
-	'''
 	details = {}
 	title = ''
 	if request.method == 'POST':
@@ -48,21 +27,17 @@ def index(request):
 			# title = Production().save()
 		else:
 			print('entrou else taskadd')
-			# print(type_of)
 			#chama as funcoes pra pegar o filme aleatorio
 			if type_of == "movie": 
-				movies = discoverMovie(rating, genre)
-				title = randomizer(movies)
-				details = getDetails(title)
-			elif type_of == "tvshow":
-				print('typeof tvshow')
+				title = randomizer(discoverMovie(rating, genre))
+			
+			elif type_of == "tv":
 				title = randomizer(discoverTv(rating, genre))
-				details = getDetailsTv(title) ##→ criar
-			# else → error
-		
-			# details = getDetails(title) #→ precisa alterar pq so retorna dos filmes
 
-	
+			production = getProduction(type_of, title["id"])
+			details = getDetails(type_of, production)
+			print(details)
+
 	genresMovie, genresTv = getGenero()
 	# print('Movie',genresMovie,'\nTv',genresTv)
 	details["genresMovie"] = genresMovie
@@ -118,12 +93,12 @@ def getTvWatchProviders(tv_id):
 	else:
 		return ("error")
 
+
 def discoverMovie(rating, genre):
 	url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=2&vote_average.gte={rating}&with_genres={genre}&with_watch_monetization_types=flatrate"
 	response = requests.get(url)
 	if response.status_code==200: 
 		movieData = json.loads(response.text) #response dictionary
-		print(movieData["results"])
 		return movieData["results"] #providers from brazil
 	else:
 		return ("error")
@@ -133,7 +108,6 @@ def discoverTv(rating, genre):
 	response = requests.get(url)
 	if response.status_code==200: 
 		tvData = json.loads(response.text) #response dictionary
-		print(tvData["results"])
 		return tvData["results"] #providers from brazil
 	else:
 		return ("error")
@@ -141,30 +115,82 @@ def discoverTv(rating, genre):
 def randomizer(lista):
 	return random.choice(lista)
 
-def getDetails(results):
+def getDetailsMovie(results):
 	img = results["poster_path"]
 	title = results["original_title"]
 	overview = results["overview"]
 	id = results["id"]
+	popularity = results["popularity"]
+	rating = results["vote_average"]
+	year = (results["release_date"]).split("-")[0]
 	link = getMovieWatchProviders(id)["link"]
 	details =  {"img": f"https://image.tmdb.org/t/p/w500/{img}",
 				"title": title,
 				"id": id,
 				"overview": overview,
-				"link": link}
+				"link": link,
+				"popularity": popularity,
+				"rating": rating,
+				"year": year}
 	return details
+###############################
+
+def getProduction(type, tv_id):
+	url = f"https://api.themoviedb.org/3/{type}/{tv_id}?api_key={api_key}&language=en-US"
+	response = requests.get(url)
+	if response.status_code==200: 
+		movieData = json.loads(response.text) #response dictionary
+		return movieData #providers from brazil
+	else:
+		return ("error")
+
+def getDetails(type, results):
+	img = results["poster_path"]
+	title = results["original_title"]
+	overview = results["overview"]
+	id = results["id"]
+	popularity = results["popularity"]
+	rating = results["vote_average"]
+	year = (results["release_date"]).split("-")[0]
+	link = getWatchProviders(type, id)["link"]
+	details =  {"img": f"https://image.tmdb.org/t/p/w500/{img}",
+				"title": title,
+				"id": id,
+				"overview": overview,
+				"link": link,
+				"popularity": popularity,
+				"rating": rating,
+				"year": year}
+	return details
+
+def getWatchProviders(type, id):
+	url = f"https://api.themoviedb.org/3/{type}/{id}/watch/providers?api_key={api_key}"
+	response = requests.get(url)
+	if response.status_code==200: 
+		data = json.loads(response.text) #response dictionary
+		return data["results"]["BR"] #providers from brazil
+	else:
+		return ("error")
+
+########################
 
 def getDetailsTv(results):
 	img = results["poster_path"]
 	title = results["original_name"]
 	overview = results["overview"]
 	id = results["id"]
+	popularity = results["popularity"]
+	rating = results["vote_average"]
+	year = (results["release_date"]).split("-")[0]
 	link = getTvWatchProviders(id)["link"]
 	details =  {"img": f"https://image.tmdb.org/t/p/w500/{img}",
 				"title": title,
 				"id": id,
 				"overview": overview,
-				"link": link}
+				"link": link,
+				"popularity": popularity,
+				"rating": rating,
+				"year": year}
 	return details
 
 

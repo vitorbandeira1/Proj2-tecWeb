@@ -114,7 +114,7 @@ header .link{
 
 
 .container .output{
-    width: 500px;
+    width: 650px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -123,15 +123,17 @@ header .link{
     font-weight: bolder;
     background: rgba(70, 70, 70, 0.3);
     padding: 1rem;
+    margin: 0 0 0 10%;
 }
 
 
 .container .output .movie-cover{
     max-width: 250px;
-    margin-left: 25%;
-    margin-top: 7%;
-    margin-bottom: 7%;
     border-radius: 5px;
+}
+
+.container .output .content{
+    padding: 0 20px;
 }
 
 
@@ -182,6 +184,10 @@ header .link{
     .container .output{
         max-width: 100%;
         
+    }
+
+    .movie-cover{
+        max-width: 200px;
     }
 
     .container .output{
