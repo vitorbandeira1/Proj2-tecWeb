@@ -33,6 +33,8 @@
   z-index: 500;
   border: 1px solid #eaeaec;
   background: #fff;
+  height: 400px;
+  overflow: scroll;
 }
 .select-list .select-options .option label {
   display: inline-block;

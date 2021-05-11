@@ -125,9 +125,12 @@ header .link{
     padding: 1rem;
 }
 
+
 .container .output .movie-cover{
-    max-width: 220px;
-    padding-right: 5%;
+    max-width: 250px;
+    margin-left: 25%;
+    margin-top: 7%;
+    margin-bottom: 7%;
     border-radius: 5px;
 }
 

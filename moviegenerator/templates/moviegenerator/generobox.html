@@ -5,9 +5,17 @@
 <div class="select-list">
     <div class="title">Select Genres</div>
     <div class="select-options">
-        {% for id,name in dictTV.items %}
+        <p>TV Show</p>
+        {% for id,name in genresTv.items %}
         <div class="option"> 
-            <input type="checkbox" name="vehicle" id="{{id}}" value="{{id}}" />
+            <input type="checkbox" name="genres" id="{{id}}" value="{{id}}" />
+            <label for="{{id}}">{{name}}</label>
+        </div>
+        {% endfor %}
+        <p>Movie</p>
+        {% for id,name in genresMovie.items %}
+        <div class="option"> 
+            <input type="checkbox" name="genres" id="{{id}}" value="{{id}}" />
             <label for="{{id}}">{{name}}</label>
         </div>
         {% endfor %}
@@ -56,7 +64,6 @@
         var checkboxValue = $(this).val();
         var isChecked = $(this).is(":checked");
 
-        alert(checkboxValue + " is " + isChecked);
         }
   </script>
 

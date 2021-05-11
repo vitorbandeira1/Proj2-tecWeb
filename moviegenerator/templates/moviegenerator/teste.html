@@ -13,6 +13,7 @@
 	  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Permanent+Marker&display=swap" rel="stylesheet" />
 	  <link rel="stylesheet" href="{% static 'moviegenerator/css/teste.css' %}"/>
       <link rel="stylesheet" href="{% static 'moviegenerator/css/generobox.css' %}"/>
+      <link rel="stylesheet" href="{% static 'moviegenerator/css/slider.css' %}"/>
   </head>
 
   <body>
@@ -64,14 +65,17 @@
                 </form>
             </div>
             <div class="output">
+                <form method="post">
+                {% csrf_token %}
                 <img src= "{{img}}" class="movie-cover">
                 <div class="content">
                     <h2>{{title}}</h2>
                     <p class="synopsis">
                         {{overview}}
                     </p>
-                    <button class="btn"><a href = "{{link}}">Watch Now</a></button>
-                </div> 
+                    <button type="submit" class="btn" name="taskAdd"><a href = "{{link}}">Watch Now</a></button>
+                </div>
+                </form> 
             </div>
         </div>
     </section>

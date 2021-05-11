@@ -1,11 +1,17 @@
-{% load static %}
-
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'moviegenerator/css/slider.css' %}"/>
-<div class="slidecontainer">
-    <input type="range" min="1" max="10" value="5" class="slider" id="myRange">
-  </div>
-  <script type="text/javascript" src="{% static 'moviegenerator/script/slider.js' %}"></script>
+
+<input type="range" id="rating" name="rating" min="0" max="10" step="0.1" onChange="change();">
+<label id="display"></label>
+<script>
+function change(){
+  var display = document.getElementById('display')
+  var value = document.getElementById('rating').value
+  console.log(document.getElementById('rating').value)
+  display.innerText = value;  
+};
+</script>
+
+
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TextField
+from .models import Production
 
 
-admin.site.register(TextField)
+admin.site.register(Production)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Note
+from .models import Production
 
 
 # class TextFieldSerializer(serializers.ModelSerializer):
