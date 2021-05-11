@@ -38,10 +38,16 @@ header .logo{
     margin-right: 20px;
 }
 
-header .list{
+
+header .subtitle{
+    margin-right: auto;
+}
+
+header .link{
     margin-left: auto;
     text-decoration: none;
     color: white;
+    margin: 10px;
 }
 
 

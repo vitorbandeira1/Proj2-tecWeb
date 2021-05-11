@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import TextField
+from .models import Production
 import requests,json,csv,os,random
 
 
@@ -76,6 +76,16 @@ def getTvWatchProviders(tv_id):
 
 def discoverMovie(rating, genre):
     url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=2&vote_average.gte={rating}&with_genres={genre}&with_watch_monetization_types=flatrate"
+    response = requests.get(url)
+    if response.status_code==200: 
+        movieData = json.loads(response.text) #response dictionary
+        #print(movieData["results"])
+        return movieData["results"] #providers from brazil
+    else:
+        return ("error")
+
+def discoverTv(rating, genre):
+    url = f"https://api.themoviedb.org/3/discover/tv?api_key={api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=2&vote_average.gte={rating}&with_genres={genre}&with_watch_monetization_types=flatrate"
     response = requests.get(url)
     if response.status_code==200: 
         movieData = json.loads(response.text) #response dictionary
