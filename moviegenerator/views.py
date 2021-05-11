@@ -53,20 +53,6 @@ def mylist(request):
 
 # Defs pra explorar api ########################################
 
-def getMovie(movie_id):
-	url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US"
-	response = requests.get(url)
-	if response.status_code==200: 
-		movieData = json.loads(response.text) #response dictionary
-		return movieData
-	else:
-		return ("error")
-
-def getTv(tv_id):
-	url = f"https://api.themoviedb.org/3/tv/{tv_id}?api_key={api_key}&language=en-US"
-	response = requests.get(url)
-
-
 def getMovieWatchProviders(movie_id):
 	url = f"https://api.themoviedb.org/3/movie/{movie_id}/watch/providers?api_key={api_key}"
 	response = requests.get(url)
@@ -115,26 +101,6 @@ def discoverTv(rating, genre):
 def randomizer(lista):
 	return random.choice(lista)
 
-def getDetailsMovie(results):
-	img = results["poster_path"]
-	title = results["original_title"]
-	overview = results["overview"]
-	id = results["id"]
-	popularity = results["popularity"]
-	rating = results["vote_average"]
-	year = (results["release_date"]).split("-")[0]
-	link = getMovieWatchProviders(id)["link"]
-	details =  {"img": f"https://image.tmdb.org/t/p/w500/{img}",
-				"title": title,
-				"id": id,
-				"overview": overview,
-				"link": link,
-				"popularity": popularity,
-				"rating": rating,
-				"year": year}
-	return details
-###############################
-
 def getProduction(type, tv_id):
 	url = f"https://api.themoviedb.org/3/{type}/{tv_id}?api_key={api_key}&language=en-US"
 	response = requests.get(url)
@@ -171,28 +137,6 @@ def getWatchProviders(type, id):
 		return data["results"]["BR"] #providers from brazil
 	else:
 		return ("error")
-
-########################
-
-def getDetailsTv(results):
-	img = results["poster_path"]
-	title = results["original_name"]
-	overview = results["overview"]
-	id = results["id"]
-	popularity = results["popularity"]
-	rating = results["vote_average"]
-	year = (results["release_date"]).split("-")[0]
-	link = getTvWatchProviders(id)["link"]
-	details =  {"img": f"https://image.tmdb.org/t/p/w500/{img}",
-				"title": title,
-				"id": id,
-				"overview": overview,
-				"link": link,
-				"popularity": popularity,
-				"rating": rating,
-				"year": year}
-	return details
-
 
 def getGeneroMovie():
 	url = 'https://api.themoviedb.org/3/genre/movie/list?api_key='+api_key+'&language=en-US'
