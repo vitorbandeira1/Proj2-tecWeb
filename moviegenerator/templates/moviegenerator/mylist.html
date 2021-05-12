@@ -12,6 +12,7 @@
 	  <link rel="preconnect" href="https://fonts.gstatic.com" />
 	  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Permanent+Marker&display=swap" rel="stylesheet" />
 	  <link rel="stylesheet" href="{% static 'moviegenerator/css/mylist.css' %}"/>
+    <link rel="stylesheet" href="{% static 'moviegenerator/css/moviecontainer.css' %}"/>
   </head>
 
   <body>
@@ -26,7 +27,10 @@
         </header>
         <div class="container">
             <h1>My List</h1>
+            
             <div class="list">
+            {% include "moviegenerator/moviecontainer.html" %}
+                <!--
                 <a href="#animals" class="item"><img src="https://placeimg.com/640/480/animals" alt="Animals"></a>
                 <a href="#architecture" class="item"><img src="https://placeimg.com/640/480/architecture" alt="Architecture"></a>
                 <a href="#nature" class="item"><img src="https://placeimg.com/640/480/nature" alt="Nature"></a>
@@ -36,8 +40,10 @@
                 <a href="#architecture" class="item"><img src="https://placeimg.com/640/480/architecture" alt="Architecture"></a>
                 <a href="#nature" class="item"><img src="https://placeimg.com/640/480/nature" alt="Nature"></a>
                 <a href="#people" class="item"><img src="https://placeimg.com/640/480/people" alt="People"></a>
-                <a href="#tech" class="item"><img src="https://placeimg.com/640/480/tech" alt="Tech"></a>
-            </div>
+                <a href="#tech" class="item"><img src="https://placeimg.com/640/480/tech" alt="Tech"></a>>
+                -->
+              </div>
+            
         </div>
     </section>
   </body>

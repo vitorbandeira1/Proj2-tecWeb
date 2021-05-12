@@ -22,7 +22,7 @@
             <a href="{% url 'index' %}"><img src="{% static 'moviegenerator/img/spinflix.png' %}" class="logo"></a>
             <span class="subtitle">Spin and Watch.</span>
             <div class="links">
-                <a href="{% url 'index' %}" class="link" >Home</a>
+                <a href="{% url 'index' %}" class="link" >Início</a>
                 <a href="{% url 'mylist' %}" class="link" >My list</a>
             </div>
         </header>
@@ -43,38 +43,25 @@
                     <div class="form-type">
                         <h3>Type</h3>
                         <div>
-                            <input type="checkbox" id="typemovie" name="type" value="movie" onChange="changeType();">
+                            <input type="checkbox" id="typemovie" name="type" value="movie">
                             <label for="typemovie">Movie</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="typetv" name="type" value="tv" onChange="changeType();">
+                            <input type="checkbox" id="typetvshow" name="type" value="tv">
                             <label for="typetvshow">TV show</label>
                         </div>
                     </div>
-                    <script>
-                        function changeType(){
-                            var movie = document.getElementById('typemovie')
-                            var tv = document.getElementById('typetv')
-                            if (movie.checked){
-                                console.log("Clicou no movie")
-                            }else if (tv.checked){
-                                console.log("Clicou no tv")
-                            }
-                    
-                        };
-                        
-                    </script>
-
     
                     <button class="btn-spin" type="submit">Spin</button>
                 </form>
             </div>
+            {% if title %}
             <form class="output" method="post">
                 {% csrf_token %}
                 <img src= "{{img}}" class="movie-cover">
                 <div class="content">
                     <h2>{{title}}</h2>
-                    <p>{{genre}} | {{rating}} | {{year}}</p>
+                    <p>{{genres}} | {{rating}} | {{year}}</p>
                     <p class="synopsis">
                         {{overview}}
                     </p>
@@ -82,6 +69,7 @@
                     <button class="btn"><a href = "{{link}}">Watch Now</a></button>
                 </div>
             </form>
+            {% endif %}
         </div>
     </section>
   </body>

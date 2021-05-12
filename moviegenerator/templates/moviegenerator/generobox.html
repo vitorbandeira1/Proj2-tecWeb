@@ -1,5 +1,3 @@
-{% load static %}
-
 
 {% block contentGenre %}
 <div class="select-list">
@@ -8,14 +6,14 @@
         <p>TV Show</p>
         {% for id,name in genresTv.items %}
         <div class="option"> 
-            <input type="checkbox" name="{{name}}-tv" id="{{id}}" value="{{id}}" />
+            <input type="checkbox" name="genres" id="{{id}}" value="{{id}}" />
             <label for="{{id}}">{{name}}</label>
         </div>
         {% endfor %}
         <p>Movie</p>
         {% for id,name in genresMovie.items %}
         <div class="option"> 
-            <input type="checkbox" name="{{name}}-movie" id="{{id}}" value="{{id}}" />
+            <input type="checkbox" name="genres" id="{{id}}" value="{{id}}" />
             <label for="{{id}}">{{name}}</label>
         </div>
         {% endfor %}

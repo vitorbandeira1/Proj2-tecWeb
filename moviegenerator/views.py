@@ -12,31 +12,21 @@ def index(request):
 	details = {}
 	title = ''
 	if request.method == 'POST':
-		#genres = int(request.POST.get('genres'))
-		#rating = float(request.POST.get('rating'))
-		#type_of = request.POST.get('type')
-
-		
-
-		# print(genres, rating, type_of)
-
 		if 'taskAdd' in request.POST:
 			print('entrou if taskadd')
 			# title = Production().save()
 		else:
-			genres = request.POST.get('genres')
-			print(genres)
-			for k, v in genres.items():
-				print(v)
+			genres = request.POST.getlist('genres')
+			genres = ','.join(genres) #de lista para string
 			rating = float(request.POST.get('rating'))
 			type_of = request.POST.get('type')
 			print('entrou else taskadd')
 			#chama as funcoes pra pegar o filme aleatorio
 			if type_of == "movie": 
-				title = randomizer(discoverMovie(rating, genre))
+				title = randomizer(discoverMovie(rating, genres))
 			
 			elif type_of == "tv":
-				title = randomizer(discoverTv(rating, genre))
+				title = randomizer(discoverTv(rating, genres))
 
 			production = getProduction(type_of, title["id"])
 			details = getDetails(type_of, production)

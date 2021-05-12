@@ -49,6 +49,10 @@ header .link{
     margin: 10px;
 }
 
+header .link:hover{
+    color: red;
+}
+
 
 
 .container{
@@ -82,33 +86,26 @@ header .link{
     position: relative;
     display: block;
     flex: 1 1 0px;
-    transition: transform 500ms;
+    transition: transform 500ms; 
     max-width: 250px;
 }
 
-.container:focus-within .item,
-.container:hover .item {
-    transform: translateX(-25%);
-}
 
-.item:focus ~ .item,
-.item:hover ~ .item {
-    transform: translateX(25%);
-}
 
 .container .item:focus,
 .container .item:hover {
     transform: scale(1.5);
-    z-index: 1;
+    z-index: 3;
+    transition: transform 400ms 0ms, z-index 500ms 0ms;
 }
 
-body {
-    overflow: hidden;
-}
+
+
+
 
 .item img {
     display: block;
-    border-radius: 3px;
+    border-radius: 7px;
     max-width: 100%;
     padding: 0 1px;
 }
