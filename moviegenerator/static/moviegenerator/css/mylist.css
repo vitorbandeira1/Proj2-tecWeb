@@ -14,7 +14,7 @@ section{
     padding: 100px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     background-color: #1b1b1b;
 }
 
@@ -56,12 +56,13 @@ header .link:hover{
 
 
 .container{
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center; 
-    flex-direction: column;
+  position: relative;
+  padding-top: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
 }
 
 .container h1{

@@ -56,7 +56,7 @@
                 </form>
             </div>
             {% if title %}
-            <form class="output" method="post">
+            <form class="output" id="idTeste" method="post">
                 {% csrf_token %}
                 <img src= "{{img}}" class="movie-cover">
                 <div class="content">
@@ -77,6 +77,7 @@
             </form>
             {% endif %}
         </div>
+        <script src="{% static 'moviegenerator/script/teste.js' %}"></script>
     </section>
   </body>
 </html>

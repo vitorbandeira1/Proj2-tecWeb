@@ -2,25 +2,21 @@
 
 
 <div class="list">
-      {% for production in productions %}
-        <!-- <a href="{production.link}" class="item"><img src="{{production.img}}" alt="Animals"></a> -->
-        
-        <div class="card">
-          <div class="image">
-            <img src="{{production.img}}"/>
-          </div>
-          <div class="details">
-            <div class="center">
-              <h1>{{production.title}}<br><span>{{production.rating}}</span></h1>
-              <p>Lorem ipsum is simple dummy text on the printing and typesetting industry.</p>
-              <ul>
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-              </ul>
+        {% for production in productions %}
+        <div class="square">
+          <div class="cover" style="background:url('{{production.img}}')"></div>
+          <div class="text">
+            <div class="info">
+              <span class="match">{{production.title}}</span>
+              <span class="rating">{{production.rating}} | {{production.type_of}}</span>
+              <!-- <span class="seasons">{{production.type_of}}</span> -->
+            </div>
+            <div class="icons">
+              <span class="btn-link">Watch Now</span>
             </div>
           </div>
         </div>
-      
-      {% endfor %}
+        {% endfor %}
     
 </div>
 

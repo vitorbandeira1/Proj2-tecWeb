@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Production
 from django.conf import settings
 import requests,json,csv,os,random
@@ -29,6 +29,7 @@ def index(request):
 			production = Production(id_api=id_api, title=title, rating=rating, link=link, img=img, type_of=type_of )
 			print(title,id_api,rating,link,img,type_of)
 			production.save()
+
 		else:
 			genres = request.POST.getlist('genres')
 			genres = ','.join(genres) #de lista para string
@@ -42,13 +43,14 @@ def index(request):
 			elif type_of == "tv":
 				title = randomizer(discoverTv(rating, genres))
 
-			print(title)
+			print(type(title))
 			id_api = title["id"]
 			production = getProduction(type_of, title["id"])
 			#print(production)
 			details = getDetails(type_of, production)
 			details["id_api"] = id_api
 			details["type_of"] = type_of
+			
 
 	genresMovie, genresTv = getGenero()
 	# print('Movie',genresMovie,'\nTv',genresTv)
