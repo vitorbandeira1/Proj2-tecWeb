@@ -14,7 +14,11 @@ def index(request):
 	if request.method == 'POST':
 		if 'taskAdd' in request.POST:
 			print('entrou if taskadd')
-			# title = Production().save()
+			'''
+				Vai ter que colocar uns inputs no output para passar as infos do modelo e salvar no db
+			'''
+			#production = Production(title=title, overview=overview, genres=genres, rating=rating, link=link, type_of=type_of )
+			# production.save()
 		else:
 			genres = request.POST.getlist('genres')
 			genres = ','.join(genres) #de lista para string

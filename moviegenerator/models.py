@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Production(models.Model):
+    #id = models.IntegerField()
     title = models.CharField(max_length=100)
     overview = models.TextField(max_length=500)
     genres = models.CharField(max_length=100)

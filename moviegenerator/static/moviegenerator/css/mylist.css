@@ -76,10 +76,24 @@ header .link:hover{
 
 
 /***** Lista dos filmes https://css-tricks.com/how-to-re-create-a-nifty-netflix-animation-in-css/ ********/ 
+/**
 .list {
     display: grid;
     grid-gap: 20px 0;
     grid-template-columns: repeat(6, minmax(100px, 1fr));
+}
+**/
+
+.list{
+    height: 250px;
+    width: auto;
+    overflow: scroll;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+    padding-bottom: 10px !important;
+    display: flex;
+    align-items: center;
 }
 
 .item {
@@ -98,9 +112,6 @@ header .link:hover{
     z-index: 3;
     transition: transform 400ms 0ms, z-index 500ms 0ms;
 }
-
-
-
 
 
 .item img {
