@@ -1,19 +1,31 @@
 {% block moviecontainer %}
 
-<div class="square one">
-    <div class="cover"></div>
-    <div class="text">
-      <div class="icons">
-        <span>:)</span>
-        <span>O</span>
-        <span>V</span>
-      </div>
-      <div class="info">
-        <span class="match">98% Match</span>
-        <span class="rating">18+</span>
-        <span class="seasons">5 Seasons</span>
-      </div>
-    </div>
+
+<div class="list">
+      {% for production in productions %}
+        <!-- <a href="{production.link}" class="item"><img src="{{production.img}}" alt="Animals"></a> -->
+        
+        <div class="card">
+          <div class="image">
+            <img src="{{production.img}}"/>
+          </div>
+          <div class="details">
+            <div class="center">
+              <h1>{{production.title}}<br><span>{{production.rating}}</span></h1>
+              <p>Lorem ipsum is simple dummy text on the printing and typesetting industry.</p>
+              <ul>
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      
+      {% endfor %}
+    
 </div>
 
 {% endblock %}
+
+
+
+

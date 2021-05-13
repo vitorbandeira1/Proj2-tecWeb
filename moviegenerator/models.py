@@ -2,13 +2,11 @@ from django.db import models
 
 
 class Production(models.Model):
-    #id = models.IntegerField()
+    id_api = models.IntegerField(default=None)
     title = models.CharField(max_length=100)
-    overview = models.TextField(max_length=500)
-    genres = models.CharField(max_length=100)
-    rating = models.IntegerField()
-    link = models.TextField(max_length=500)
-
+    rating = models.IntegerField(default=None)
+    link = models.TextField(max_length=600)
+    img = models.TextField(max_length=600, default="") 
     TYPES = (
         ('M', 'Movie'),
         ('TV', 'TV Show'),

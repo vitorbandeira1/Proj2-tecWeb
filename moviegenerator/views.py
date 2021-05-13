@@ -8,17 +8,27 @@ import requests,json,csv,os,random
 api_key = settings.TMDB_API_KEY
 access_token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NGEyMzMwODNhYTg3ZmMwMzNiM2M1NTQ0NmU0ZGQzZSIsInN1YiI6IjYwOGIxNzk3NjY0NjlhMDAyYjFiMzM1OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dmwOZBSInOqzZLh8CdeUHPqH-jq47ZQwAfYsd86AxpY'
 
+sort_list_movie=["popularity.asc", "popularity.desc", "release_date.desc", "revenue.asc", "revenue.desc", "primary_release_date.asc", "primary_release_date.desc", "original_title.asc", "original_title.desc", "vote_average.asc", "vote_average.desc",'vote_count.asc', 'vote_count.desc']
+
+sort_list_tv=['vote_average.desc', 'vote_average.asc', 'first_air_date.desc', 'popularity.desc', 'popularity.asc']
+
 def index(request):
 	details = {}
 	title = ''
 	if request.method == 'POST':
 		if 'taskAdd' in request.POST:
-			print('entrou if taskadd')
+			title = request.POST.get('title')
+			id_api = request.POST.get('id_api')
+			rating = float(request.POST.get('rating'))
+			link = request.POST.get('link')
+			img = request.POST.get('img')
+			type_of = request.POST.get('type_of')
 			'''
 				Vai ter que colocar uns inputs no output para passar as infos do modelo e salvar no db
 			'''
-			#production = Production(title=title, overview=overview, genres=genres, rating=rating, link=link, type_of=type_of )
-			# production.save()
+			production = Production(id_api=id_api, title=title, rating=rating, link=link, img=img, type_of=type_of )
+			print(title,id_api,rating,link,img,type_of)
+			production.save()
 		else:
 			genres = request.POST.getlist('genres')
 			genres = ','.join(genres) #de lista para string
@@ -32,53 +42,34 @@ def index(request):
 			elif type_of == "tv":
 				title = randomizer(discoverTv(rating, genres))
 
+			print(title)
+			id_api = title["id"]
 			production = getProduction(type_of, title["id"])
+			#print(production)
 			details = getDetails(type_of, production)
-			print(details)
+			details["id_api"] = id_api
+			details["type_of"] = type_of
+
 	genresMovie, genresTv = getGenero()
 	# print('Movie',genresMovie,'\nTv',genresTv)
 	details["genresMovie"] = genresMovie
 	details["genresTv"] = genresTv
 
 
+
 	return render(request, 'moviegenerator/teste.html', details)
 
 def mylist(request):
-	return render(request, 'moviegenerator/mylist.html')
+	all_productions = Production.objects.all()
+	return render(request, 'moviegenerator/mylist.html', {"productions":all_productions})
 	
 
 
 # Defs pra explorar api ########################################
 
-def getMovieWatchProviders(movie_id):
-	url = f"https://api.themoviedb.org/3/movie/{movie_id}/watch/providers?api_key={api_key}"
-	response = requests.get(url)
-	if response.status_code==200: 
-		movieData = json.loads(response.text) #response dictionary
-		return movieData["results"]["BR"] #providers from brazil
-	else:
-		return ("error")
-
-def getTvWatchProviders(tv_id):
-	url = f"https://api.themoviedb.org/3/tv/{tv_id}/watch/providers?api_key={api_key}"
-	response = requests.get(url)
-	if response.status_code==200: 
-		tvData = json.loads(response.text) #response dictionary
-
-		# if tvData["results"] == "BR":
-		# 	print('PROVIDER == DE BR' ,tvData["results"])
-		# 	# return movieData["results"]["BR"] #providers from brazil
-		# else:
-		# 	print('PROVIDER DIFF DE BR' ,tvData["results"])
-		# 	# return movieData["results"]["US"] #providers from brazil
-
-		return tvData["results"]["BR"] #providers from brazil
-	else:
-		return ("error")
-
-
 def discoverMovie(rating, genre):
-	url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=2&vote_average.gte={rating}&with_genres={genre}&with_watch_monetization_types=flatrate"
+	sort_by = randomizer(sort_list_movie)
+	url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key}&language=en-US&sort_by={sort_by}&include_adult=false&include_video=false&page=2&vote_average.gte={rating}&with_genres={genre}&with_watch_monetization_types=flatrate"
 	response = requests.get(url)
 	if response.status_code==200: 
 		movieData = json.loads(response.text) #response dictionary
@@ -87,7 +78,8 @@ def discoverMovie(rating, genre):
 		return ("error")
 
 def discoverTv(rating, genre):
-	url = f"https://api.themoviedb.org/3/discover/tv?api_key={api_key}&language=en-US&sort_by=popularity.desc&page=1&vote_average.gte={rating}&without_genres={genre}&include_null_first_air_dates=false&with_watch_monetization_types=flatrate"
+	sort_by = randomizer(sort_list_tv)
+	url = f"https://api.themoviedb.org/3/discover/tv?api_key={api_key}&language=en-US&sort_by={sort_by}&page=1&vote_average.gte={rating}&without_genres={genre}&include_null_first_air_dates=false&with_watch_monetization_types=flatrate"
 	response = requests.get(url)
 	if response.status_code==200: 
 		tvData = json.loads(response.text) #response dictionary
@@ -111,15 +103,22 @@ def getDetails(type_of, results):
 	img = results["poster_path"]
 	if type_of == "movie":
 		title = results["original_title"]
-		year = (results["release_date"]).split("-")[0]
+		if isinstance(results["release_date"], str) :
+			year = (results["release_date"]).split("-")[0]
+		else:
+			year = ''
 	elif type_of == "tv":
 		title = results["original_name"]
-		year = (results["first_air_date"]).split("-")[0]
+		if isinstance(results["first_air_date"], str) :
+			year = (results["first_air_date"]).split("-")[0]
+		else:
+			year = ''
 	overview = results["overview"]
 	id = results["id"]
 	popularity = results["popularity"]
 	rating = results["vote_average"]
-	link = getWatchProviders(type_of, id)["link"]
+	
+	link = f'https://www.themoviedb.org/{type_of}/{id}' #getWatchProviders(type_of, id)["link"]
 	details =  {"img": f"https://image.tmdb.org/t/p/w500/{img}",
 				"title": title,
 				"id": id,
@@ -130,14 +129,14 @@ def getDetails(type_of, results):
 				"year": year}
 	return details
 
-def getWatchProviders(type, id):
-	url = f"https://api.themoviedb.org/3/{type}/{id}/watch/providers?api_key={api_key}"
-	response = requests.get(url)
-	if response.status_code==200: 
-		data = json.loads(response.text) #response dictionary
-		return data["results"]["BR"] #providers from brazil
-	else:
-		return ("error")
+# def getWatchProviders(type, id):
+# 	url = f"https://api.themoviedb.org/3/{type}/{id}/watch/providers?api_key={api_key}"
+# 	response = requests.get(url)
+# 	if response.status_code==200: 
+# 		data = json.loads(response.text) #response dictionary
+# 		return data["results"]["BR"] #providers from brazil
+# 	else:
+# 		return ("error")
 
 def getGeneroMovie():
 	url = 'https://api.themoviedb.org/3/genre/movie/list?api_key='+api_key+'&language=en-US'
