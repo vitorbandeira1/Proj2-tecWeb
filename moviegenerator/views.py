@@ -27,8 +27,8 @@ def index(request):
 				Vai ter que colocar uns inputs no output para passar as infos do modelo e salvar no db
 			'''
 			production = Production(id_api=id_api, title=title, rating=rating, link=link, img=img, type_of=type_of )
-			print(title,id_api,rating,link,img,type_of)
 			production.save()
+			return render(request,"moviegenerator/teste.html")
 
 		else:
 			genres = request.POST.getlist('genres')
@@ -103,6 +103,10 @@ def getProduction(type, tv_id):
 
 def getDetails(type_of, results):
 	img = results["poster_path"]
+	if img:
+		img = f"https://image.tmdb.org/t/p/w500/{img}"
+	else:
+		img=''
 	if type_of == "movie":
 		title = results["original_title"]
 		if isinstance(results["release_date"], str) :
@@ -121,7 +125,7 @@ def getDetails(type_of, results):
 	rating = results["vote_average"]
 	
 	link = f'https://www.themoviedb.org/{type_of}/{id}' #getWatchProviders(type_of, id)["link"]
-	details =  {"img": f"https://image.tmdb.org/t/p/w500/{img}",
+	details =  {"img": img,
 				"title": title,
 				"id": id,
 				"overview": overview,

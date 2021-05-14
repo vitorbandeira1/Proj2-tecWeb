@@ -20,16 +20,18 @@ section{
 
 
 header{
-    position: absolute;
+    background-color: #1b1b1b;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 40px 100px;
+    padding: 20px 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: 'Roboto', sans-serif;
     color: white;
+    z-index: 1;
 }
 
 header .logo{
@@ -57,7 +59,7 @@ header .link:hover{
 
 .container{
   position: relative;
-  padding-top: 100px;
+  padding-top: 70px;
   width: 100%;
 }
 
@@ -75,6 +77,8 @@ header .link:hover{
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
+    padding-bottom: 100px;
 }
+
 
 

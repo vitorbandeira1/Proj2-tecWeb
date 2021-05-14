@@ -14,6 +14,9 @@
 	  <link rel="stylesheet" href="{% static 'moviegenerator/css/teste.css' %}"/>
       <link rel="stylesheet" href="{% static 'moviegenerator/css/generobox.css' %}"/>
       <link rel="stylesheet" href="{% static 'moviegenerator/css/slider.css' %}"/>
+      <script src="https://code.jquery.com/jquery-3.5.1.js" 
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+            crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -56,7 +59,7 @@
                 </form>
             </div>
             {% if title %}
-            <form class="output" id="idTeste" method="post">
+            <form class="output" id="formOutput" method="post">
                 {% csrf_token %}
                 <img src= "{{img}}" class="movie-cover">
                 <div class="content">
@@ -71,7 +74,7 @@
                     <input type="hidden" id="link" name="link" value="{{link}}">
                     <input type="hidden" id="img" name="img" value="{{img}}">
                     <input type="hidden" id="type_of" name="type_of" value="{{type_of}}">
-                    <button type="submit" class="btn-add" name="taskAdd">+</button>
+                    <button type="submit" class="btn-add" id="taskAdd" name="taskAdd" value="">+</button>
                     <button class="btn"><a href = "{{link}}">Watch Now</a></button>
                 </div>
             </form>
