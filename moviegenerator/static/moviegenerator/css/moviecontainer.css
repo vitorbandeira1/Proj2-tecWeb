@@ -3,6 +3,8 @@
   width: 200px;
   height: 100px;
   transition: transform 100ms ease-out, border-radius 200ms ease-out;
+  margin: 1%;
+  margin-bottom: 220px;
 }
 
 .square .cover {
