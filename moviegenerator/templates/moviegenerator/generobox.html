@@ -3,20 +3,25 @@
 <div class="select-list">
     <div class="title">Select Genres</div>
     <div class="select-options">
-        <p>TV Show</p>
-        {% for id,name in genresTv.items %}
-        <div class="option"> 
-            <input type="checkbox" name="genres" id="{{id}}" value="{{id}}" />
-            <label for="{{id}}">{{name}}</label>
+        <div id="tv-show">
+            <p>TV Show</p>
+            {% for id,name in genresTv.items %}
+            <div class="option"> 
+                <input type="checkbox" name="genres" id="{{id}}" value="{{id}}" />
+                <label for="{{id}}">{{name}}</label>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-        <p>Movie</p>
-        {% for id,name in genresMovie.items %}
-        <div class="option"> 
-            <input type="checkbox" name="genres" id="{{id}}" value="{{id}}" />
-            <label for="{{id}}">{{name}}</label>
+        <div id="movie-show">
+            <p>Movie</p>
+            {% for id,name in genresMovie.items %}
+            <div class="option" > 
+                <input type="checkbox" name="genres" id="{{id}}" value="{{id}}" />
+                <label for="{{id}}">{{name}}</label>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+            
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

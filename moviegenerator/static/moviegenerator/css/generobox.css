@@ -2,6 +2,13 @@
 
 /* Style dropdown*/
 
+#tv-show{
+  display: none;
+}
+
+#movie-show{
+  display: none;
+}
 
 .select-list {
   color: #555;

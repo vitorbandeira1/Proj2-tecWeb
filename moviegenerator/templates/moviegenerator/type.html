@@ -1,0 +1,33 @@
+{% block content %}
+
+<h3>Type</h3>
+<div>
+    <input type="radio" id="typemovie" name="type" value="movie" >
+    <label for="typemovie">Movie</label>
+</div>
+<div>
+    <input type="radio" id="typetvshow" name="type" value="tv">
+    <label for="typetvshow">TV show</label>
+</div>
+
+<script>
+
+    $(document).ready(function() {
+    $('input[type="radio"]').click(function() {
+        if($(this).attr('id') == 'typemovie') {
+            $('#movie-show').show();
+            $('#tv-show').hide();            
+        }
+        else if($(this).attr('id') == 'typetvshow') {
+            $('#tv-show').show();    
+            $('#movie-show').hide();   
+        } else{
+            $('#tv-show').show(); 
+            $('#movie-show').show();
+        }
+    });
+    });
+
+</script>
+
+{% endblock %}

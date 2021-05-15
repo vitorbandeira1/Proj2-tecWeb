@@ -1,8 +1,54 @@
 
 {% block content %}
 
+	<div class="slider-ui color1">
+		<input type="range" id="rating" min="0" max="10" step="0.1" onChange="change();">
+		<div class="bar">
+			<span class="min"></span>
+			<span class="max"></span>
+		</div>
+		<div class="track">
+			<div class="value"></div>
+		</div>
+  </div>
 
-<input type="range" id="rating" name="rating" min="0" max="10" step="0.1" onChange="change();">
+
+<script>
+  const sliders = document.querySelectorAll(".slider-ui");
+
+  sliders.forEach((slider) => {
+    let input = slider.querySelector("input[type=range]");
+    let min = input.getAttribute("min");
+    let max = input.getAttribute("max");
+    let valueElem = slider.querySelector(".value");
+
+    slider.querySelector(".min").innerText = min;
+    slider.querySelector(".max").innerText = max;
+
+    function setValueElem() {
+      valueElem.innerText = input.value;
+      let percent = ((input.value - min) / (max - min)) * 100;
+      valueElem.style.left = percent + "%";
+      valueElem.innerText = '>' + input.value 
+    }
+    setValueElem();
+
+    input.addEventListener("input", setValueElem);
+    input.addEventListener("mousedown", () => {
+      valueElem.classList.add("up");
+    });
+    input.addEventListener("mouseup", () => {
+      valueElem.classList.remove("up");
+    });
+  });
+
+  function change(){
+  var value = document.getElementById('rating').value
+  console.log(document.getElementById('rating').value)
+  };
+</script>
+
+<!-- <input type="range" id="rating" name="rating" min="0" max="10" step="0.1" onChange="change();">
 <label id="display"></label>
 <script>
 function change(){
@@ -11,7 +57,7 @@ function change(){
   console.log(document.getElementById('rating').value)
   display.innerText = value;  
 };
-</script>
+</script> -->
 
 
 {% endblock %}
