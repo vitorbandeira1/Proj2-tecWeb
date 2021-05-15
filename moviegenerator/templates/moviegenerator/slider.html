@@ -2,7 +2,7 @@
 {% block content %}
 
 	<div class="slider-ui color1">
-		<input type="range" id="rating" min="0" max="10" step="0.1" onChange="change();">
+		<input type="range" id="rating" name="rating" min="0" max="10" step="0.1" onChange="change();">
 		<div class="bar">
 			<span class="min"></span>
 			<span class="max"></span>
@@ -29,7 +29,7 @@
       valueElem.innerText = input.value;
       let percent = ((input.value - min) / (max - min)) * 100;
       valueElem.style.left = percent + "%";
-      valueElem.innerText = '>' + input.value 
+      //valueElem.innerText = '>' + input.value 
     }
     setValueElem();
 

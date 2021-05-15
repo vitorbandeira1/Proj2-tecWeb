@@ -23,11 +23,9 @@ def index(request):
 			link = request.POST.get('link')
 			img = request.POST.get('img')
 			type_of = request.POST.get('type_of')
-			'''
-				Vai ter que colocar uns inputs no output para passar as infos do modelo e salvar no db
-			'''
-			production = Production(id_api=id_api, title=title, rating=rating, link=link, img=img, type_of=type_of )
-			production.save()
+			if not Production.objects.filter(type_of=type_of).exists():
+				production = Production(id_api=id_api, title=title, rating=rating, link=link, img=img, type_of=type_of )
+				production.save()
 			return render(request,"moviegenerator/teste.html")
 
 		else:
