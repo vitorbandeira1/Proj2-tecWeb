@@ -17,14 +17,15 @@
 
 .square .text {
   display: none;
-  background: #181818;
-  color: #fff;
-  width: 100%;
-  height: fit-content;
-  padding: 5px;
-  box-sizing: border-box;
-  transition: opacity 300ms ease-out, border-radius 200ms ease-out;
-  border-radius: 0 0 10px 10px;
+    background: #181818;
+    color: #fff;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    transition: opacity 300ms ease-out, border-radius 200ms ease-out;
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+    letter-spacing: 1px;
 }
 
 .square:hover {
@@ -34,12 +35,11 @@
 }
 
 .square:hover .text {
-  display: block;
+  display: flex;
 }
 
-
-.square .text .info {
-  font-size: 8px;
+.info{
+  width: 80%;
 }
 
 .icons {
@@ -78,26 +78,40 @@
 
 .rating {
   font-family: 'Roboto', sans-serif;
-  padding-left: 20px;
   font-weight: bold;
   font-size: 10px;
 
 }
-.match {
+.info-title {
   font-family: 'Roboto', sans-serif;
   color: rgb(255, 255, 255);
   font-weight: bold;
-  font-size: large;
+  font-size: 15px;
 }
 
-/* .btn-link{
-  width: 100%;
+
+/******** Play button - Fonte: **********/
+
+/* Basic red round button properties */
+.play-btn {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
   background-color: #bd212b;
   color: white;
-  border-radius: 4px;
-  border: none;
-  padding: 8px 20px;
-  font-weight: 500;
-  letter-spacing: 1px;
+  font-size: 0;
+}
 
-} */
+.play-btn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  font-family: 'Webdings';
+  font-size: 10px;
+  content: '\25B6';
+  top: 5px;
+  left: 10px;
+}
+

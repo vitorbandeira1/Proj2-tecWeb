@@ -44,7 +44,6 @@ def index(request):
 			print(type(title))
 			id_api = title["id"]
 			production = getProduction(type_of, title["id"])
-			#print(production)
 			details = getDetails(type_of, production)
 			details["id_api"] = id_api
 			details["type_of"] = type_of
@@ -73,6 +72,7 @@ def discoverMovie(rating, genre):
 	response = requests.get(url)
 	if response.status_code==200: 
 		movieData = json.loads(response.text) #response dictionary
+		print(movieData["results"])
 		return movieData["results"] #providers from brazil
 	else:
 		return ("error")
