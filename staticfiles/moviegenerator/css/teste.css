@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+*{
+    margin: 0;
+  padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+section{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1b1b1b;
+}
+
+
+header{
+    background-color: #1b1b1b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    z-index: 1;
+}
+
+header .logo{
+    position: relative;
+    max-width: 150px;
+    margin-right: 20px;
+}
+
+
+header .subtitle{
+    margin-right: auto;
+}
+
+header .link{
+    margin-left: auto;
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+}
+
+header .link:hover{
+    color: red;
+}
+
+
+.container{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+}
+
+.container .preferences-input{
+    position: relative;
+    max-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-weight: bolder;
+    padding: 1rem;
+}
+
+.container .preferences-input h2{
+    font-weight: bolder;
+    margin-bottom: 2.5rem;
+    font-size: 2rem;
+}
+
+
+.form-imdb, .form-type, .form-genre2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.container .preferences-input div .slidecontainer{
+    width: 66%;
+}
+
+
+
+.container .preferences-input select {
+    width: 66%;
+}
+
+.container .preferences-input .form-genre input {
+    width: 66%;
+}
+
+
+.container .preferences-input .btn-spin{
+    width: 100%;
+    background-color: #bd212b;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    padding: 8px 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+}
+
+
+
+
+.container .output{
+    width: 650px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-weight: bolder;
+    background: rgba(70, 70, 70, 0.3);
+    padding: 1rem;
+    margin: 0 0 0 10%;
+}
+
+
+.container .output .movie-cover{
+    max-width: 250px;
+    border-radius: 5px;
+}
+
+.container .output .content{
+    padding: 0 20px;
+}
+
+
+
+.container .output .content .btn{
+    width: 100%;
+    background-color: #bd212b;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    padding: 8px 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.container .output .content .btn-add{
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border-color: white;
+    border-style: solid;
+    color: white;
+    border-radius: 20px;
+    border-width: 0.1px;
+    margin: 10px;
+    font-weight: bolder;
+}
+
+.container .output .content .btn-add:hover{
+    background: #bd212b;
+    border: none;
+}
+
+a, a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+.container .output .content h2{
+    font-weight: bolder;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 3px;
+}
+
+.container .output .content p{
+    margin-bottom: 1rem;
+    font-size: small;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    line-height: 1rem;
+}
+
+
+
+@media (max-width: 800px){
+    header{
+        padding: 40px;
+    }
+    section{
+        padding: 150px 40px;
+    }
+    .container{
+        flex-direction: column;
+    }
+    .container .preferences-input,
+    .container .output{
+        max-width: 100%;
+        
+    }
+
+    .movie-cover{
+        max-width: 200px;
+    }
+
+    .container .output{
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 500px){
+
+}
+

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ap^za_mnggd)isu%)*_%!wlxzegdh4bnqaol-4yru!j&pgp9!n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://git.heroku.com/spinflix.git', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['spinflix.herokuapp.com', 'localhost', '127.0.0.1']
 
 TMDB_API_KEY = '84a233083aa87fc033b3c55446e4dd3e'
 

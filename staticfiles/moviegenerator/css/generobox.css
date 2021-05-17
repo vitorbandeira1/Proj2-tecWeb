@@ -1,0 +1,55 @@
+
+
+/* Style dropdown*/
+
+#tv-show{
+  display: none;
+}
+
+#movie-show{
+  display: none;
+}
+
+.select-list {
+  color: #555;
+  width: 66%;
+}
+.select-list .title {
+  display: inline-block;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #eaeaec;
+  border-radius: 5px;
+  padding: 5px 15px 5px 15px;
+  width: 100%;
+}
+.select-list .title::after {
+  display: inline-block;
+  content: '>';
+  margin-left: 40px;
+  font-size: 11px;
+  transform: rotate(90deg) scale(1, 2);
+}
+.select-list .title:hover {
+  background: #eaeaec;
+}
+.select-list .select-options {
+  margin-top: 5px;
+  display: none;
+  position: absolute;
+  z-index: 500;
+  border: 1px solid #eaeaec;
+  background: #fff;
+  height: 400px;
+  overflow: scroll;
+}
+.select-list .select-options .option label {
+  display: inline-block;
+  padding: 5px 30px 5px 10px;
+}
+.select-list .select-options .option:hover {
+  background: #eaeaec;
+}
+.select-list .select-options .option input {
+  margin: 10px 0 12px 15px;
+}
