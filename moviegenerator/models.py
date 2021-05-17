@@ -11,7 +11,7 @@ class Production(models.Model):
         ('M', 'Movie'),
         ('TV', 'TV Show'),
     )
-    type_of = models.CharField(max_length=2, choices=TYPES)
+    type_of = models.CharField(max_length=10, choices=TYPES)
 
 
     def __str__(self):
