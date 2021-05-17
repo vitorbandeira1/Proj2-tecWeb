@@ -23,9 +23,13 @@ def index(request):
 			link = request.POST.get('link')
 			img = request.POST.get('img')
 			type_of = request.POST.get('type_of')
+			'''
 			if not Production.objects.filter(type_of=type_of).exists():
 				production = Production(id_api=id_api, title=title, rating=rating, link=link, img=img, type_of=type_of )
 				production.save()
+			'''
+			production = Production(id_api=id_api, title=title, rating=rating, link=link, img=img, type_of=type_of )
+			production.save()
 			return render(request,"moviegenerator/teste.html")
 
 		else:
